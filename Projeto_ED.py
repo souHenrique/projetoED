@@ -12,6 +12,19 @@ class Lista_de_Filmes:
         filme_novo = Filmes(nome_filme, ano, genero, diretor)
         filme_novo.next = self.head
         self.head = filme_novo
+    def remove_filmes(self, nome_filme):
+        filme_atual = self.head
+        previous = None
+        while filme_atual is not None:
+            if filme_atual.nome_filme == nome_filme:
+                if previous is None:
+                    self.head = filme_atual.next
+                else:
+                    previous.next = filme_atual.next
+                return True
+            previous = filme_atual
+            filme_atual = filme_atual.next
+        return False
     def mostrar_filmes(self):
         filme_atual = self.head
         while filme_atual is not None:
@@ -23,9 +36,10 @@ class Lista_de_Filmes:
             filme_atual = filme_atual.next
 lista_Filmes = Lista_de_Filmes()
 while True:
-    print("1- Adicionar Filme")
-    print("2- Mostrar Filmes")
-    print("3- Fechar")
+    print("1 - Adicionar Filme")
+    print("2 - Remover Filme")
+    print("3 - Mostrar Filmes")
+    print("4 - Fechar")
     opcao = int(input("Digite a opção:"))
     if opcao == 1:
         nome_filme = input("Digite o nome do filme:")
@@ -34,6 +48,12 @@ while True:
         diretor = input("Digite o nome do diretor do filme:")
         lista_Filmes.adiciona_filmes(nome_filme, ano, genero, diretor)
     elif opcao == 2:
-        lista_Filmes.mostrar_filmes() 
+        nome_filme = input("Digite o nome do filme que deseja remover:")
+        if lista_Filmes.remove_filmes(nome_filme):
+            print("Filme Removido com sucesso!")
+        else:
+            print("Filme não encontrado!")
     elif opcao == 3:
+        lista_Filmes.mostrar_filmes() 
+    elif opcao == 4:
         break
