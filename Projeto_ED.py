@@ -47,6 +47,7 @@ while True:
         genero = input("Digite o gênero do filme:")
         diretor = input("Digite o nome do diretor do filme:")
         lista_Filmes.adiciona_filmes(nome_filme, ano, genero, diretor)
+        print("Filme adicionado com sucesso!")
     elif opcao == 2:
         nome_filme = input("Digite o nome do filme que deseja remover:")
         if lista_Filmes.remove_filmes(nome_filme):
@@ -54,6 +55,11 @@ while True:
         else:
             print("Filme não encontrado!")
     elif opcao == 3:
-        lista_Filmes.mostrar_filmes() 
+        if lista_Filmes.head is None:
+            print("Nenhum filme encontrado!")
+        else:
+            lista_Filmes.mostrar_filmes() 
     elif opcao == 4:
         break
+    else:
+        print("Opção inválida, tente novamente!")
