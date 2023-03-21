@@ -5,13 +5,16 @@ class Filmes:
         self.genero = genero
         self.diretor = diretor
         self.next = None
+
 class Lista_de_Filmes:
     def __init__(self):
         self.head = None
+
     def adiciona_filmes(self, nome_filme, ano, genero, diretor):
         filme_novo = Filmes(nome_filme, ano, genero, diretor)
         filme_novo.next = self.head
         self.head = filme_novo
+
     def remove_filmes(self, nome_filme):
         filme_atual = self.head
         previous = None
@@ -25,6 +28,7 @@ class Lista_de_Filmes:
             previous = filme_atual
             filme_atual = filme_atual.next
         return False
+    
     def mostrar_filmes(self):
         filme_atual = self.head
         while filme_atual is not None:
@@ -34,27 +38,39 @@ class Lista_de_Filmes:
             print("Diretor:", filme_atual.diretor)
             print("=" * 30)
             filme_atual = filme_atual.next
+
 lista_Filmes = Lista_de_Filmes()
+
+print("==========LISTA DE FILMES==========")
+
 while True:
+    print("=" * 30)
     print("1 - Adicionar Filme")
     print("2 - Remover Filme")
     print("3 - Mostrar Filmes")
     print("4 - Fechar")
+    print("=" * 30)
     opcao = int(input("Digite a opção:"))
+
     if opcao == 1:
+        print("=" * 30)
         nome_filme = input("Digite o nome do filme:")
         ano = int(input("Digiter o ano de lançamento do filme:"))
         genero = input("Digite o gênero do filme:")
         diretor = input("Digite o nome do diretor do filme:")
         lista_Filmes.adiciona_filmes(nome_filme, ano, genero, diretor)
+        print("=" * 30)
         print("Filme adicionado com sucesso!")
     elif opcao == 2:
+        print("=" * 30)
         nome_filme = input("Digite o nome do filme que deseja remover:")
+        print("=" * 30)
         if lista_Filmes.remove_filmes(nome_filme):
             print("Filme Removido com sucesso!")
         else:
             print("Filme não encontrado!")
     elif opcao == 3:
+        print("=" * 30)
         if lista_Filmes.head is None:
             print("Nenhum filme encontrado!")
         else:
